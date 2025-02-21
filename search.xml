@@ -1,39 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>明文攻击--不是非得两个文件</title>
-    <url>/2025/02/20/the-first/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>没有通常会给的已知文件，只给了一个压缩包，里面是被加密的一张png图片</p>
-<h4 id="了解一下-明文攻击"><a href="#了解一下-明文攻击" class="headerlink" title="了解一下 明文攻击"></a>了解一下 <code>明文攻击</code></h4><ul>
-<li>符合哪些特征可以使用明文攻击<ol>
-<li>Zip文件</li>
-<li>文件均为ZipCrypto加密</li>
-<li>已知加密文件的部分明文（8字节，12字节）<br> <strong>但这一条不是必须的内容,当只给出一张图片，且为ZipCrypto（Store）加密时，也能使用明文攻击，如本题</strong></li>
-</ol>
-</li>
-</ul>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
-<li>获取png文件头,得到png_hearder文件</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 十六进制字符串</span></span><br><span class="line">hex_string = <span class="string">&quot;89504E470D0A1A0A0000000D49484452&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将十六进制字符串转换为字节数据</span></span><br><span class="line">binary_data = <span class="built_in">bytes</span>.fromhex(hex_string)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字节数据写入文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;png_header&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(binary_data)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件 &#x27;png_header&#x27; 已成功创建！&quot;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>使用工具<code>bkcrack</code>得到密钥</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:\CTF\tool\bkcrack&gt; .\bkcrack.exe -C bkcrack_advanced.zip -c a.png -p png_header</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Keys: b53dcc5c 19c8786e f0298d20</p>
-<ol start="3">
-<li>利用密钥破解文件</li>
-</ol>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:\CTF\tool\bkcrack&gt; .\bkcrack.exe -C bkcrack_advanced.zip -c a.png -k b53dcc5c 19c8786e f0298d20 -d 1.png</span><br></pre></td></tr></table></figure>
-
-<p>得到解密后的文件<code>1.png</code></p>
+    <title>Hello World</title>
+    <url>/2025/02/17/hello-world/</url>
+    <content><![CDATA[<p><em>Welcome to my blog.</em><br><em>I’m  <strong>Eleven</strong>.</em><br><em>So nice to meet you.</em></p>
+<hr>
+<h3 id="“And-it’s-fine-to-fake-it-‘til-you-make-it"><a href="#“And-it’s-fine-to-fake-it-‘til-you-make-it" class="headerlink" title="“And it’s fine to fake it ‘til you make it"></a>“<em>And it’s fine to fake it ‘til you make it</em></h3><h3 id="‘Til-you-do-’til-it’s-true-“"><a href="#‘Til-you-do-’til-it’s-true-“" class="headerlink" title="‘Til you do,’til it’s true.“"></a>‘<em>Til you do,’til it’s true.</em>“</h3><p><em><strong>It’s better to burn out than to fade away.</strong></em></p>
 ]]></content>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Misc</tag>
-      </tags>
   </entry>
   <entry>
     <title>明文攻击--不是非得两个文件</title>
@@ -69,13 +42,5 @@
         <tag>CTF</tag>
         <tag>Misc</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/02/17/hello-world/</url>
-    <content><![CDATA[<p><em>Welcome to my blog.</em><br><em>I’m  <strong>Eleven</strong>.</em><br><em>So nice to meet you.</em></p>
-<hr>
-<h3 id="“And-it’s-fine-to-fake-it-‘til-you-make-it"><a href="#“And-it’s-fine-to-fake-it-‘til-you-make-it" class="headerlink" title="“And it’s fine to fake it ‘til you make it"></a>“<em>And it’s fine to fake it ‘til you make it</em></h3><h3 id="‘Til-you-do-’til-it’s-true-“"><a href="#‘Til-you-do-’til-it’s-true-“" class="headerlink" title="‘Til you do,’til it’s true.“"></a>‘<em>Til you do,’til it’s true.</em>“</h3><p><em><strong>It’s better to burn out than to fade away.</strong></em></p>
-]]></content>
   </entry>
 </search>
