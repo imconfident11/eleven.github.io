@@ -174,6 +174,92 @@
    
 
 
+<article id="post-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/02/23/2/">Hgame CTF 2025题目复现</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-02-22T16:00:00.000Z" itemprop="datePublished">2025-02-23</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/CTF/">-CTF</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            368 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              REverseTurtle
+用Exeinfo PE打开发现是upx壳，而且题目也提示了需要脱壳，upx壳被魔改过了，用普通脱壳工具无效，于是手动脱壳。
+
+用xdbg64打开，oep脱壳定律找到大跳转，打断点
+
+F9运行，接着用ScyllaDump，oep为00000000004014E0,生成Turtle_dump.exe接着先后点击IAT Autosearch,Get Imports,Fix Dump,这里打开Turtle_dump.exe，之后打开文件夹就会看到新生成的Turtle_dump_SCY.exe文件了。
+
+将Turtle_dump_SCY.exe用IDA(64)打开，发现可以正常地看到函数了，找到main函数，F5反汇编一下
+
+点开函数后可以看出sub_401550是rc4 init，而sub_40163E（标准）和sub_40175A（魔改）是两个rc4
+
+解出flag
+
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/02/23/2/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
 <article id="post-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
@@ -244,92 +330,6 @@ Zip文件
     <a class="right-panel  non-pic  "
       
       href="/2025/02/20/1/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/02/20/2/">Hgame CTF 2025题目复现</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-02-19T16:00:00.000Z" itemprop="datePublished">2025-02-20</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/CTF/">-CTF</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            368 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              REverseTurtle
-用Exeinfo PE打开发现是upx壳，而且题目也提示了需要脱壳，upx壳被魔改过了，用普通脱壳工具无效，于是手动脱壳。
-
-用xdbg64打开，oep脱壳定律找到大跳转，打断点
-
-F9运行，接着用ScyllaDump，oep为00000000004014E0,生成Turtle_dump.exe接着先后点击IAT Autosearch,Get Imports,Fix Dump,这里打开Turtle_dump.exe，之后打开文件夹就会看到新生成的Turtle_dump_SCY.exe文件了。
-
-将Turtle_dump_SCY.exe用IDA(64)打开，发现可以正常地看到函数了，找到main函数，F5反汇编一下
-
-点开函数后可以看出sub_401550是rc4 init，而sub_40163E（标准）和sub_40175A（魔改）是两个rc4
-
-解出flag
-
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/02/20/2/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
