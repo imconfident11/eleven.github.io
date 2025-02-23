@@ -204,7 +204,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            368 词 
+            398 词 
           </div>
         </div>
         
@@ -217,19 +217,16 @@
             
               REverseTurtle
 用Exeinfo PE打开发现是upx壳，而且题目也提示了需要脱壳，upx壳被魔改过了，用普通脱壳工具无效，于是手动脱壳。
+ps：有的魔改后的upx壳可以在010editor中改（把add0-&gt;upx0,add1-&gt;upx1……,本题为只读文见改不了） 
+
 
 用xdbg64打开，oep脱壳定律找到大跳转，打断点
-
 F9运行，接着用ScyllaDump，oep为00000000004014E0,生成Turtle_dump.exe接着先后点击IAT Autosearch,Get Imports,Fix Dump,这里打开Turtle_dump.exe，之后打开文件夹就会看到新生成的Turtle_dump_SCY.exe文件了。
-
 将Turtle_dump_SCY.exe用IDA(64)打开，发现可以正常地看到函数了，找到main函数，F5反汇编一下
-
 点开函数后可以看出sub_401550是rc4 init，而sub_40163E（标准）和sub_40175A（魔改）是两个rc4
-
 解出flag
 
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152...
+123456789101112131415161718...
             
           </div>
         

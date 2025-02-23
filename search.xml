@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2025/02/17/hello-world/</url>
+    <content><![CDATA[<p><em>Welcome to my blog.</em><br><em>I’m  <strong>Eleven</strong>.</em><br><em>So nice to meet you.</em></p>
+<hr>
+<h3 id="“And-it’s-fine-to-fake-it-‘til-you-make-it"><a href="#“And-it’s-fine-to-fake-it-‘til-you-make-it" class="headerlink" title="“And it’s fine to fake it ‘til you make it"></a>“<em>And it’s fine to fake it ‘til you make it</em></h3><h3 id="‘Til-you-do-’til-it’s-true-“"><a href="#‘Til-you-do-’til-it’s-true-“" class="headerlink" title="‘Til you do,’til it’s true.“"></a>‘<em>Til you do,’til it’s true.</em>“</h3><p><em><strong>It’s better to burn out than to fade away.</strong></em></p>
+]]></content>
+  </entry>
+  <entry>
     <title>明文攻击(特别的)</title>
     <url>/2025/02/20/1/</url>
     <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>没有通常会给的已知文件，只给了一个压缩包，里面是被加密的一张png图片</p>
@@ -41,18 +49,15 @@
     <title>Hgame CTF 2025题目复现</title>
     <url>/2025/02/23/2/</url>
     <content><![CDATA[<h1 id="REverse"><a href="#REverse" class="headerlink" title="REverse"></a>REverse</h1><h2 id="Turtle"><a href="#Turtle" class="headerlink" title="Turtle"></a>Turtle</h2><ol>
-<li><p>用<code>Exeinfo PE</code>打开发现是upx壳，而且题目也提示了需要脱壳，upx壳被魔改过了，用普通脱壳工具无效，于是手动脱壳。<br><img src="/images/2/1.png" alt="Exeinfo PE"></p>
+<li>用<code>Exeinfo PE</code>打开发现是upx壳，而且题目也提示了需要脱壳，upx壳被魔改过了，用普通脱壳工具无效，于是手动脱壳。<br><img src="/images/2/1.png" alt="Exeinfo PE"><blockquote>
+<p>ps：有的魔改后的upx壳可以在010editor中改（把add0-&gt;upx0,add1-&gt;upx1……,本题为只读文见改不了） </p>
+</blockquote>
 </li>
-<li><p>用xdbg64打开，oep脱壳定律找到大跳转，打断点<br><img src="/images/2/2.png" alt="xdbg64"></p>
-</li>
-<li><p>F9运行，接着用<code>Scylla</code>Dump，oep为00000000004014E0,生成Turtle_dump.exe<br><img src="/images/2/3.png" alt="Scylla Dump"><br><img src="/images/2/4.png" alt="Turtle_dump.exe"><br>接着先后点击<code>IAT Autosearch</code>,<code>Get Imports</code>,<code>Fix Dump</code>,这里打开Turtle_dump.exe，之后打开文件夹就会看到新生成的Turtle_dump_SCY.exe文件了。<br><img src="/images/2/5.png" alt="IAT Autosearch"><br><img src="/images/2/6.png" alt="Get Imports"></p>
-</li>
-<li><p>将Turtle_dump_SCY.exe用IDA(64)打开，发现可以正常地看到函数了，找到main函数，F5反汇编一下<br><img src="/images/2/7.png" alt="main"></p>
-</li>
-<li><p>点开函数后可以看出sub_401550是rc4 init，而sub_40163E（标准）和sub_40175A（魔改）是两个rc4</p>
-</li>
-<li><p>解出flag</p>
-</li>
+<li>用xdbg64打开，oep脱壳定律找到大跳转，打断点<br><img src="/images/2/2.png" alt="xdbg64"></li>
+<li>F9运行，接着用<code>Scylla</code>Dump，oep为00000000004014E0,生成Turtle_dump.exe<br><img src="/images/2/3.png" alt="Scylla Dump"><br><img src="/images/2/4.png" alt="Turtle_dump.exe"><br>接着先后点击<code>IAT Autosearch</code>,<code>Get Imports</code>,<code>Fix Dump</code>,这里打开Turtle_dump.exe，之后打开文件夹就会看到新生成的Turtle_dump_SCY.exe文件了。<br><img src="/images/2/5.png" alt="IAT Autosearch"><br><img src="/images/2/6.png" alt="Get Imports"></li>
+<li>将Turtle_dump_SCY.exe用IDA(64)打开，发现可以正常地看到函数了，找到main函数，F5反汇编一下<br><img src="/images/2/7.png" alt="main"></li>
+<li>点开函数后可以看出sub_401550是rc4 init，而sub_40163E（标准）和sub_40175A（魔改）是两个rc4</li>
+<li>解出flag</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher.ARC4 <span class="keyword">import</span> *  </span><br><span class="line">enc_key = <span class="built_in">bytes</span>([</span><br><span class="line"> <span class="number">0xCD</span>,</span><br><span class="line"> <span class="number">0x8F</span>,</span><br><span class="line"> <span class="number">0x25</span>,</span><br><span class="line"> <span class="number">0x3D</span>,</span><br><span class="line"> <span class="number">0xE1</span>,</span><br><span class="line"> ])</span><br><span class="line"> </span><br><span class="line">enc_key += <span class="string">b&#x27;QJ&#x27;</span></span><br><span class="line"> </span><br><span class="line">cipher = new(<span class="string">b&#x27;yekyek&#x27;</span>)</span><br><span class="line">dec_key = cipher.decrypt(enc_key)</span><br><span class="line"><span class="built_in">print</span>(dec_key)</span><br><span class="line"><span class="comment">#ecg4ab6</span></span><br><span class="line"> </span><br><span class="line">enc_flag = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">40</span>)]</span><br><span class="line">v5 = enc_flag</span><br><span class="line">v5[<span class="number">0</span>] = -<span class="number">8</span></span><br><span class="line">v5[<span class="number">1</span>] = -<span class="number">43</span></span><br><span class="line">v5[<span class="number">2</span>] = <span class="number">98</span></span><br><span class="line">v5[<span class="number">3</span>] = -<span class="number">49</span></span><br><span class="line">v5[<span class="number">4</span>] = <span class="number">67</span></span><br><span class="line">v5[<span class="number">5</span>] = -<span class="number">70</span></span><br><span class="line">v5[<span class="number">6</span>] = -<span class="number">62</span></span><br><span class="line">v5[<span class="number">7</span>] = <span class="number">35</span></span><br><span class="line">v5[<span class="number">8</span>] = <span class="number">21</span></span><br><span class="line">v5[<span class="number">9</span>] = <span class="number">74</span></span><br><span class="line">v5[<span class="number">10</span>] = <span class="number">81</span></span><br><span class="line">v5[<span class="number">11</span>] = <span class="number">16</span></span><br><span class="line">v5[<span class="number">12</span>] = <span class="number">39</span></span><br><span class="line">v5[<span class="number">13</span>] = <span class="number">16</span></span><br><span class="line">v5[<span class="number">14</span>] = -<span class="number">79</span></span><br><span class="line">v5[<span class="number">15</span>] = -<span class="number">49</span></span><br><span class="line">v5[<span class="number">16</span>] = -<span class="number">60</span></span><br><span class="line">v5[<span class="number">17</span>] = <span class="number">9</span></span><br><span class="line">v5[<span class="number">18</span>] = -<span class="number">2</span></span><br><span class="line">v5[<span class="number">19</span>] = -<span class="number">29</span></span><br><span class="line">v5[<span class="number">20</span>] = -<span class="number">97</span></span><br><span class="line">v5[<span class="number">21</span>] = <span class="number">73</span></span><br><span class="line">v5[<span class="number">22</span>] = -<span class="number">121</span></span><br><span class="line">v5[<span class="number">23</span>] = -<span class="number">22</span></span><br><span class="line">v5[<span class="number">24</span>] = <span class="number">89</span></span><br><span class="line">v5[<span class="number">25</span>] = -<span class="number">62</span></span><br><span class="line">v5[<span class="number">26</span>] = <span class="number">7</span></span><br><span class="line">v5[<span class="number">27</span>] = <span class="number">59</span></span><br><span class="line">v5[<span class="number">28</span>] = -<span class="number">87</span></span><br><span class="line">v5[<span class="number">29</span>] = <span class="number">17</span></span><br><span class="line">v5[<span class="number">30</span>] = -<span class="number">63</span></span><br><span class="line">v5[<span class="number">31</span>] = -<span class="number">68</span></span><br><span class="line">v5[<span class="number">32</span>] = -<span class="number">3</span></span><br><span class="line">v5[<span class="number">33</span>] = <span class="number">75</span></span><br><span class="line">v5[<span class="number">34</span>] = <span class="number">87</span></span><br><span class="line">v5[<span class="number">35</span>] = -<span class="number">60</span></span><br><span class="line">v5[<span class="number">36</span>] = <span class="number">126</span></span><br><span class="line">v5[<span class="number">37</span>] = -<span class="number">48</span></span><br><span class="line">v5[<span class="number">38</span>] = -<span class="number">86</span></span><br><span class="line">v5[<span class="number">39</span>] = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">add_bytes = new(<span class="string">b&#x27;ecg4ab6&#x27;</span>).encrypt(<span class="string">b&#x27;\x00&#x27;</span> * <span class="number">40</span>)</span><br><span class="line"> </span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">40</span>):</span><br><span class="line">    flag += <span class="built_in">chr</span>((enc_flag[i] + add_bytes[i]) &amp; <span class="number">0xff</span>) </span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line"><span class="comment">#b&#x27;ecg4ab6&#x27;</span></span><br><span class="line"><span class="comment">#hgame&#123;Y0u&#x27;r3_re4l1y_g3t_0Ut_of_th3_upX!&#125;</span></span><br></pre></td></tr></table></figure>
 <p>flag: hgame{Y0u’r3_re4l1y_g3t_0Ut_of_th3_upX!}</p>
@@ -63,13 +68,5 @@
       <tags>
         <tag>Reverse</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/02/17/hello-world/</url>
-    <content><![CDATA[<p><em>Welcome to my blog.</em><br><em>I’m  <strong>Eleven</strong>.</em><br><em>So nice to meet you.</em></p>
-<hr>
-<h3 id="“And-it’s-fine-to-fake-it-‘til-you-make-it"><a href="#“And-it’s-fine-to-fake-it-‘til-you-make-it" class="headerlink" title="“And it’s fine to fake it ‘til you make it"></a>“<em>And it’s fine to fake it ‘til you make it</em></h3><h3 id="‘Til-you-do-’til-it’s-true-“"><a href="#‘Til-you-do-’til-it’s-true-“" class="headerlink" title="‘Til you do,’til it’s true.“"></a>‘<em>Til you do,’til it’s true.</em>“</h3><p><em><strong>It’s better to burn out than to fade away.</strong></em></p>
-]]></content>
   </entry>
 </search>
