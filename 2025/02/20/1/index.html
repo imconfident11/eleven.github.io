@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="题目描述没有通常会给的已知文件，只给了一个压缩包，里面是被加密的一张png图片 了解一下 明文攻击 符合哪些特征可以使用明文攻击 Zip文件 文件均为ZipCrypto加密 已知加密文件的部分明文（8字节，12字节） 但这一条不是必须的内容,当只给出一张图片，且为ZipCrypto（Store）加密时，也能使用明文攻击，如本题    解题思路 获取png文件头,得到png_hearder文件  1">
+  <meta name="description" content="题目描述没有通常会给的已知文件，只给了一个压缩包，里面是被加密的一张png图片 了解一下 明文攻击 符合哪些特征可以使用明文攻击 Zip文件 文件均为ZipCrypto加密 已知加密文件的部分明文（至少连续的8字节&#x2F;12字节）    解题思路 获取png文件头,得到png_hearder文件  1234567891011# 十六进制字符串hex_string &#x3D; &quot;89504E">
 <meta property="og:type" content="article">
 <meta property="og:title" content="明文攻击(特别的)">
 <meta property="og:url" content="http://example.com/2025/02/20/1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目描述没有通常会给的已知文件，只给了一个压缩包，里面是被加密的一张png图片 了解一下 明文攻击 符合哪些特征可以使用明文攻击 Zip文件 文件均为ZipCrypto加密 已知加密文件的部分明文（8字节，12字节） 但这一条不是必须的内容,当只给出一张图片，且为ZipCrypto（Store）加密时，也能使用明文攻击，如本题    解题思路 获取png文件头,得到png_hearder文件  1">
+<meta property="og:description" content="题目描述没有通常会给的已知文件，只给了一个压缩包，里面是被加密的一张png图片 了解一下 明文攻击 符合哪些特征可以使用明文攻击 Zip文件 文件均为ZipCrypto加密 已知加密文件的部分明文（至少连续的8字节&#x2F;12字节）    解题思路 获取png文件头,得到png_hearder文件  1234567891011# 十六进制字符串hex_string &#x3D; &quot;89504E">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-21T06:00:30.017Z">
+<meta property="article:modified_time" content="2025-02-25T05:06:53.325Z">
 <meta property="article:author" content="Eleven">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
@@ -153,7 +153,7 @@
       <div class="category-box">
             <a class="category-link" href="/categories/CTF/">
                 -CTF
-                <div class="category-count">2</div>
+                <div class="category-count">3</div>
             </a>
         </div>
     </div>
@@ -210,7 +210,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            256 词 
+            224 词 
           </div>
         </div>
         
@@ -224,7 +224,7 @@
 <li>符合哪些特征可以使用明文攻击<ol>
 <li>Zip文件</li>
 <li>文件均为ZipCrypto加密</li>
-<li>已知加密文件的部分明文（8字节，12字节）<br> <strong>但这一条不是必须的内容,当只给出一张图片，且为ZipCrypto（Store）加密时，也能使用明文攻击，如本题</strong></li>
+<li>已知加密文件的部分明文（至少连续的8字节&#x2F;12字节）</li>
 </ol>
 </li>
 </ul>
